@@ -13,6 +13,7 @@ const FormModal = props => {
       width: 100,
       height: 100,
       alignSelf: 'center',
+      marginBottom: 25,
     },
     container: {
       padding: 20,
@@ -20,8 +21,20 @@ const FormModal = props => {
     },
     row: {
       flexDirection: 'row',
+      justifyContent: 'space-around',
+      marginTop: 10,
     },
-    cancelBtn: {},
+    btnContainer: {
+      flex: 1,
+      margin: 5,
+    },
+    inputText: {
+      borderWidth: 1,
+      borderRadius: 10,
+      width: '80%',
+      alignSelf: 'center',
+      borderColor: '#d9d9d9',
+    },
   });
 
   return (
@@ -32,10 +45,15 @@ const FormModal = props => {
           onChangeText={newText => setText(newText)}
           defaultValue={text}
           placeholder="Item"
+          style={styles.inputText}
         />
         <View style={styles.row}>
-          <Button title="Retour" />
-          <Button title="Ajouter" onPress={() => addText(text)} />
+          <View style={styles.btnContainer}>
+            <Button title="Ajouter" onPress={() => addText(text)} />
+          </View>
+          <View style={styles.btnContainer}>
+            <Button title="Retour" color={'red'} onPress={props.hide} />
+          </View>
         </View>
       </View>
     </Modal>

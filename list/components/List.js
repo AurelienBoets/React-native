@@ -11,6 +11,10 @@ const List = () => {
     setShow(!show);
   };
 
+  const hide = () => {
+    setShow(!show);
+  };
+
   const styles = StyleSheet.create({
     container: {
       padding: 20,
@@ -27,7 +31,7 @@ const List = () => {
   return (
     <View style={styles.container}>
       <Button title="Ajouter objet" onPress={() => setShow(!show)} />
-      <FormModal show={show} add={addItem} />
+      <FormModal show={show} add={addItem} hide={hide} />
       <FlatList
         data={list}
         renderItem={itemData => {
