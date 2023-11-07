@@ -1,4 +1,11 @@
-import {View, Button, FlatList, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Button,
+  FlatList,
+  Text,
+  StyleSheet,
+  Pressable,
+} from 'react-native';
 import FormModal from './FormModal';
 import {useRef, useState} from 'react';
 
@@ -13,6 +20,14 @@ const List = () => {
 
   const isShow = () => {
     setShow(!show);
+  };
+
+  const remove = index => {
+    let newList = [...list];
+    newList.splice(index, 1);
+    setList(newList);
+    console.log(index);
+    console.log(newList);
   };
 
   const styles = StyleSheet.create({
@@ -37,7 +52,9 @@ const List = () => {
         renderItem={itemData => {
           return (
             <View>
-              <Text style={styles.bgPurple}>{itemData.item}</Text>
+              <Pressable onPress={() => remove(itemData.index)}>
+                <Text style={styles.bgPurple}>{itemData.item}</Text>
+              </Pressable>
             </View>
           );
         }}
