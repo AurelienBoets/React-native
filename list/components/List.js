@@ -26,8 +26,6 @@ const List = () => {
     let newList = [...list];
     newList.splice(index, 1);
     setList(newList);
-    console.log(index);
-    console.log(newList);
   };
 
   const styles = StyleSheet.create({
