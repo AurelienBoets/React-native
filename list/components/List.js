@@ -8,10 +8,10 @@ const List = () => {
 
   const addItem = text => {
     setList([...list, text]);
-    setShow(!show);
+    isShow();
   };
 
-  const hide = () => {
+  const isShow = () => {
     setShow(!show);
   };
 
@@ -30,8 +30,8 @@ const List = () => {
 
   return (
     <View style={styles.container}>
-      <Button title="Ajouter objet" onPress={() => setShow(!show)} />
-      <FormModal show={show} add={addItem} hide={hide} />
+      <Button title="Ajouter objet" onPress={() => isShow()} />
+      <FormModal show={show} add={addItem} hide={isShow} />
       <FlatList
         data={list}
         renderItem={itemData => {
