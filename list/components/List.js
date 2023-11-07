@@ -1,4 +1,4 @@
-import {View, Button, FlatList, Text} from 'react-native';
+import {View, Button, FlatList, Text, StyleSheet} from 'react-native';
 import FormModal from './FormModal';
 import {useRef, useState} from 'react';
 
@@ -10,8 +10,22 @@ const List = () => {
     setList([...list, text]);
     setShow(!show);
   };
+
+  const styles = StyleSheet.create({
+    container: {
+      padding: 20,
+    },
+    bgPurple: {
+      backgroundColor: '#7005f2',
+      marginTop: 10,
+      padding: 5,
+      borderRadius: 5,
+      color: 'white',
+    },
+  });
+
   return (
-    <View>
+    <View style={styles.container}>
       <Button title="Ajouter objet" onPress={() => setShow(!show)} />
       <FormModal show={show} add={addItem} />
       <FlatList
@@ -19,7 +33,7 @@ const List = () => {
         renderItem={itemData => {
           return (
             <View>
-              <Text>{itemData.item}</Text>
+              <Text style={styles.bgPurple}>{itemData.item}</Text>
             </View>
           );
         }}
