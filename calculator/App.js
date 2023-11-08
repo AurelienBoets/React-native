@@ -17,21 +17,22 @@ const App = () => {
   const [oldDisplay, setOldDisplay] = useState('');
   const [result, setResult] = useState('');
 
-  function handleOperator(operator) {
+  function handleOperator(newOperator) {
+    console.log(firstNumber);
     if (operator === '' && firstNumber !== '') {
-      setOperator(operator);
+      setOperator(newOperator);
       setOldDisplay(firstNumber);
     } else if (operator === '' && result !== '') {
       setFirstNumber(`${result}`);
       setOldDisplay(result);
-      setOperator(operator);
+      setOperator(newOperator);
       setResult('');
     } else if (firstNumber !== '' && lastNumber !== '') {
       const number = calcul();
-      console.log(number);
       setFirstNumber(number);
       setOldDisplay(number);
-      setOperator(operator);
+      setOperator(newOperator);
+      setDisplay('');
       setLastNumber('');
       setResult('');
     }
@@ -85,7 +86,7 @@ const App = () => {
   const calcul = () => {
     if (firstNumber !== '' && lastNumber !== '') {
       let number;
-      switch (isOperator) {
+      switch (true) {
         case operator === '+':
           setResult(parseFloat(firstNumber) + parseFloat(lastNumber));
           setDisplay(parseFloat(firstNumber) + parseFloat(lastNumber));
