@@ -13,25 +13,22 @@ const App = () => {
   const [operator, setOperator] = useState('');
   const [firstNumber, setFirstNumber] = useState('');
   const [lastNumber, setLastNumber] = useState('');
-  const [isOperator, setIsOperator] = useState(false);
   const [display, setDisplay] = useState('');
   const [oldDisplay, setOldDisplay] = useState('');
   const [result, setResult] = useState('');
 
   function handleOperator(operator) {
-    if (!isOperator && firstNumber !== '') {
+    if (operator === '' && firstNumber !== '') {
       setOperator(operator);
-      setIsOperator(true);
       setOldDisplay(firstNumber);
-    } else if (!isOperator && result !== '') {
+    } else if (operator === '' && result !== '') {
       setFirstNumber(`${result}`);
       setOldDisplay(result);
       setOperator(operator);
-      setIsOperator(true);
+      setResult('');
     } else if (firstNumber !== '' && lastNumber !== '') {
       const number = calcul();
       console.log(number);
-      setIsOperator(true);
       setFirstNumber(number);
       setOldDisplay(number);
       setOperator(operator);
@@ -41,7 +38,7 @@ const App = () => {
   }
 
   const handleNumber = number => {
-    if (!isOperator) {
+    if (operator === '') {
       setResult('');
       setFirstNumber(newNumber => {
         setDisplay(newNumber + number);
@@ -49,7 +46,6 @@ const App = () => {
       });
     } else if (result) {
       setOperator('');
-      setIsOperator(false);
       setFirstNumber(number);
       setDisplay(number);
       setLastNumber('');
@@ -64,7 +60,7 @@ const App = () => {
   };
 
   const handleRemove = () => {
-    if (!isOperator) {
+    if (operator === '') {
       setFirstNumber(newNumber => {
         setDisplay(newNumber.slice(0, -1));
         return newNumber.slice(0, -1);
@@ -81,7 +77,6 @@ const App = () => {
     setOperator('');
     setFirstNumber('');
     setLastNumber('');
-    setIsOperator(false);
     setResult(0);
     setDisplay('');
     setOldDisplay('');
