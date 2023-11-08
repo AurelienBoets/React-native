@@ -54,6 +54,7 @@ const App = () => {
       setDisplay(number);
       setLastNumber('');
       setOldDisplay('');
+      setResult('');
     } else {
       setLastNumber(newNumber => {
         setDisplay(newNumber + number);
