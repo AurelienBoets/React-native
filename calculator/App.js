@@ -28,12 +28,15 @@ const App = () => {
       setOldDisplay(result);
       setOperator(operator);
       setIsOperator(true);
-    } else if (firstNumber !== '' || lastNumber !== '') {
+    } else if (firstNumber !== '' && lastNumber !== '') {
       const number = calcul();
-      setOperator(operator);
+      console.log(number);
       setIsOperator(true);
-      setOldDisplay(number);
       setFirstNumber(number);
+      setOldDisplay(number);
+      setOperator(operator);
+      setLastNumber('');
+      setResult('');
     }
   }
 
@@ -44,6 +47,12 @@ const App = () => {
         setDisplay(newNumber + number);
         return newNumber + number;
       });
+    } else if (result) {
+      setOperator('');
+      setIsOperator(false);
+      setFirstNumber(number);
+      setLastNumber('');
+      setOldDisplay('');
     } else {
       setLastNumber(newNumber => {
         setDisplay(newNumber + number);
@@ -78,45 +87,30 @@ const App = () => {
 
   const calcul = () => {
     if (firstNumber !== '' && lastNumber !== '') {
+      let number;
       switch (isOperator) {
         case operator === '+':
           setResult(parseFloat(firstNumber) + parseFloat(lastNumber));
           setDisplay(parseFloat(firstNumber) + parseFloat(lastNumber));
-          setOperator('');
-          setIsOperator(false);
-          setFirstNumber('');
-          setLastNumber('');
-          setOldDisplay('');
+          number = parseFloat(firstNumber) + parseFloat(lastNumber);
           break;
         case operator === '-':
           setResult(parseFloat(firstNumber) - parseFloat(lastNumber));
           setDisplay(parseFloat(firstNumber) - parseFloat(lastNumber));
-          setOperator('');
-          setIsOperator(false);
-          setFirstNumber('');
-          setLastNumber('');
-          setOldDisplay('');
+          number = parseFloat(firstNumber) - parseFloat(lastNumber);
           break;
         case operator === 'x':
           setResult(parseFloat(firstNumber) * parseFloat(lastNumber));
           setDisplay(parseFloat(firstNumber) * parseFloat(lastNumber));
-          setOperator('');
-          setIsOperator(false);
-          setFirstNumber('');
-          setLastNumber('');
-          setOldDisplay('');
+          number = parseFloat(firstNumber) * parseFloat(lastNumber);
           break;
         case operator === '/':
           setResult(parseFloat(firstNumber) / parseFloat(lastNumber));
           setDisplay(parseFloat(firstNumber) / parseFloat(lastNumber));
-          setOperator('');
-          setIsOperator(false);
-          setFirstNumber('');
-          setLastNumber('');
-          setOldDisplay('');
+          number = parseFloat(firstNumber) / parseFloat(lastNumber);
           break;
       }
-      return result;
+      return number;
     }
   };
 
