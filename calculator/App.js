@@ -51,6 +51,7 @@ const App = () => {
       setOperator('');
       setIsOperator(false);
       setFirstNumber(number);
+      setDisplay(number);
       setLastNumber('');
       setOldDisplay('');
     } else {
