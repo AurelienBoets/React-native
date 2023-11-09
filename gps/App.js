@@ -6,7 +6,7 @@
  */
 
 import React, {useEffect, useState} from 'react';
-import {Button, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
 import Geolocation from '@react-native-community/geolocation';
 import axios from 'axios';
 import {api} from './Api';
@@ -31,7 +31,7 @@ function App() {
   const getTown = () => {
     axios
       .get(
-        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${api}&q=${latitude}%2C${longitude}.`,
+        `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${api}&q=${latitude}%2C${longitude}`,
       )
       .then(resp => {
         setTown(resp.data.AdministrativeArea.LocalizedName);
@@ -44,6 +44,7 @@ function App() {
   return (
     <View>
       <Button title="Localiser" onPress={() => getTown()} />
+      <Text>{town}</Text>
     </View>
   );
 }
